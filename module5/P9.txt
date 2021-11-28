@@ -1,0 +1,40 @@
+1.
+* Missing eventrequest and eventplan join */
+SELECT eventrequest.eventno, dateheld, status, estcost
+FROM eventrequest, employee, facility, eventplan
+WHERE eventplan.empno = employee.empno
+AND eventrequest. fancy = facility.facno
+AND eventrequest.evento = eventplan.eventno
+AND estaudience > 5000
+AND acname = ‘Football Stadium;
+AND empname = ‘Mary Manager’
+2.
+* Eventplan and Group By redundant**
+SELECTeventrequest.eventno, dateheld, status, estcost
+FROM eventrequest
+WHERE estaudience > 4000;
+3.
+** Employee table redundant**
+SELECT eventrequest.eventno, dateheld, status, estcost
+FROM eventrequest, eventplan, facility
+WHERE eventplan.eventno = eventrequest.eventno
+AND eventrequest.facno = facility.facno
+AND facname = ‘Football Stadium’;
+4.
+*Eventno is PK so doesn’t need DISTINCT * *BETWEEN spelt wrong*
+SELECT eventno, dateheld, status, estcost
+FROM eventrequest, employee, eventplan
+WHERE eventplan.empno = employee.empno
+AND eventrequest.eventno = eventplan.eventno
+AND estaduience BETWEEN 5000 AND 10000
+AND empname = ‘Mary Manager’;
+5.
+SELECT eventplan.planno, eventplanline.lineo, resourcetbl.resname, eventplanline.numberfld,
+timestart, timeend
+FROM eventrequest, facility, eventplan, eventplanline, resourcetbl
+WHERE eventplan.planno = eventplanline.planno
+AND eventplanline.resno = resourcetbl.resno
+AND eventrequest.eventno = eventplan.eventno
+AND eventrequest.facno = facility.facno
+AND eventrequest.estaudience = ‘10000’
+AND facility.facname = ‘Basketball arena’ 
